@@ -7,7 +7,7 @@
 
 import UIKit
 
-class MainGameViewViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, Storyboardable {
+class MainGameViewViewController: UIViewController, UITableViewDelegate, UITableViewDataSource{
 
     weak var coordinator: AppCoordinator?
     
@@ -125,12 +125,12 @@ class MainGameViewViewController: UIViewController, UITableViewDelegate, UITable
         currentStrengthLabel.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 0.4).isActive = true
         self.view.addSubview(levelStatistic)
         levelStatistic.topAnchor.constraint(equalTo: currentStrengthLabel.bottomAnchor).isActive = true
-        levelStatistic.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 20).isActive = true
+        levelStatistic.rightAnchor.constraint(equalTo: self.view.centerXAnchor, constant: -10).isActive = true
         levelStatistic.heightAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: 0.2).isActive = true
         levelStatistic.widthAnchor.constraint(equalTo: levelStatistic.heightAnchor).isActive = true
         self.view.addSubview(itemsBoostStatistics)
         itemsBoostStatistics.topAnchor.constraint(equalTo: currentStrengthLabel.bottomAnchor).isActive = true
-        itemsBoostStatistics.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -20).isActive = true
+        itemsBoostStatistics.leftAnchor.constraint(equalTo: self.view.centerXAnchor, constant: 10).isActive = true
         itemsBoostStatistics.heightAnchor.constraint(equalTo: levelStatistic.heightAnchor).isActive = true
         itemsBoostStatistics.widthAnchor.constraint(equalTo: itemsBoostStatistics.heightAnchor).isActive = true
         self.view.addSubview(playersTable)
@@ -139,10 +139,10 @@ class MainGameViewViewController: UIViewController, UITableViewDelegate, UITable
         playersTable.topAnchor.constraint(equalTo: itemsBoostStatistics.bottomAnchor).isActive = true
         playersTable.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
         playersTable.widthAnchor.constraint(equalTo: self.view.widthAnchor).isActive = true
-        playersTable.heightAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: 0.4).isActive = true
+        playersTable.heightAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: 0.35).isActive = true
         self.view.addSubview(startFightingButton)
         startFightingButton.rightAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
-        startFightingButton.topAnchor.constraint(equalTo: playersTable.bottomAnchor, constant: -15).isActive = true
+        startFightingButton.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -15).isActive = true
         startFightingButton.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 0.15).isActive = true
         startFightingButton.heightAnchor.constraint(equalTo: startFightingButton.widthAnchor).isActive = true
     }
