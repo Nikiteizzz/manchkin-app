@@ -7,7 +7,7 @@
 
 import UIKit
 
-class StartViewController: UIViewController, Storyboardable {
+class StartViewController: UIViewController {
 
     weak var coordinator: AppCoordinator?
     
