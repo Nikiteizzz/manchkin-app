@@ -7,7 +7,7 @@
 
 import UIKit
 
-class MainGameViewViewController: UIViewController, UITableViewDelegate, UITableViewDataSource{
+class MainGameViewController: UIViewController, UITableViewDelegate, UITableViewDataSource{
 
     weak var coordinator: AppCoordinator?
     
