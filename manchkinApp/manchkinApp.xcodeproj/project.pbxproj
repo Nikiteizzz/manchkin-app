@@ -21,6 +21,7 @@
 		0A2B7CD628BD034700F7367F /* PlayerInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A2B7CD528BD034700F7367F /* PlayerInfoView.swift */; };
 		0A2B7CDB28BD041800F7367F /* atributeWork.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A2B7CDA28BD041800F7367F /* atributeWork.swift */; };
 		0A2B7CDD28BD043F00F7367F /* PlayerClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A2B7CDC28BD043F00F7367F /* PlayerClass.swift */; };
+		0A2B7D4028C1E6BD00F7367F /* PlayerAddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A2B7D3F28C1E6BD00F7367F /* PlayerAddViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +41,7 @@
 		0A2B7CD528BD034700F7367F /* PlayerInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerInfoView.swift; sourceTree = "<group>"; };
 		0A2B7CDA28BD041800F7367F /* atributeWork.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = atributeWork.swift; sourceTree = "<group>"; };
 		0A2B7CDC28BD043F00F7367F /* PlayerClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerClass.swift; sourceTree = "<group>"; };
+		0A2B7D3F28C1E6BD00F7367F /* PlayerAddViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerAddViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,6 +111,7 @@
 				0A2B7CCB28BCFDCF00F7367F /* MainGameViewViewController.swift */,
 				0A2B7CCD28BCFE3D00F7367F /* StartViewController.swift */,
 				0A2B7CCF28BCFEE300F7367F /* FightViewController.swift */,
+				0A2B7D3F28C1E6BD00F7367F /* PlayerAddViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -207,6 +210,7 @@
 				0A2B7CD228BCFF4100F7367F /* MonsterFightView.swift in Sources */,
 				0A2B7CDD28BD043F00F7367F /* PlayerClass.swift in Sources */,
 				0A2B7CDB28BD041800F7367F /* atributeWork.swift in Sources */,
+				0A2B7D4028C1E6BD00F7367F /* PlayerAddViewController.swift in Sources */,
 				0A2B7CD428BCFF6800F7367F /* PlayerFightView.swift in Sources */,
 				0A2B7CD028BCFEE300F7367F /* FightViewController.swift in Sources */,
 				0A2B7CCE28BCFE3D00F7367F /* StartViewController.swift in Sources */,

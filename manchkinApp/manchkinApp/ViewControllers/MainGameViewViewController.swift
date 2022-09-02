@@ -12,7 +12,7 @@ class MainGameViewController: UIViewController, UITableViewDelegate, UITableView
     weak var coordinator: AppCoordinator?
     
     var currentPlayer:Player = Player(name: "NONE")
-    var playersArr:[Player] = [Player(name: "Никита", level: 1, itemsBoost: 1), Player(name: "Паша", level: 2, itemsBoost: 3)]
+    var playersArr:[Player] = [Player(name: "Никита", level: 1, itemsBoost: 1), Player(name: "Паша", level: 2, itemsBoost: 3), Player(name: "Лера"), Player(name: "Валера"), Player(name: "Лёша")]
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
@@ -104,6 +104,10 @@ class MainGameViewController: UIViewController, UITableViewDelegate, UITableView
         return fightingButton
     }()
     
+    private let addNewPlayerButton: UIButton = {
+        
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = .white
@@ -141,7 +145,7 @@ class MainGameViewController: UIViewController, UITableViewDelegate, UITableView
         playersTable.widthAnchor.constraint(equalTo: self.view.widthAnchor).isActive = true
         playersTable.heightAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: 0.35).isActive = true
         self.view.addSubview(startFightingButton)
-        startFightingButton.rightAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
+        startFightingButton.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 20).isActive = true
         startFightingButton.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -15).isActive = true
         startFightingButton.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 0.15).isActive = true
         startFightingButton.heightAnchor.constraint(equalTo: startFightingButton.widthAnchor).isActive = true
