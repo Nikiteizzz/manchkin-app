@@ -60,6 +60,8 @@ class PlayerAddViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = .white
+        let tapScreen = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard(sender:)))
+        self.view.addGestureRecognizer(tapScreen)
         self.view.addSubview(addPlayerLabel)
         addPlayerLabel.topAnchor.constraint(equalTo: self.view.topAnchor).isActive = true
         addPlayerLabel.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
@@ -95,5 +97,9 @@ class PlayerAddViewController: UIViewController {
             failAllert.addAction(UIAlertAction(title: "Окей", style: .default))
             present(failAllert, animated: true)
         }
+    }
+    
+    @objc func dismissKeyboard(sender: UITapGestureRecognizer) {
+        self.view.endEditing(true)
     }
 }
