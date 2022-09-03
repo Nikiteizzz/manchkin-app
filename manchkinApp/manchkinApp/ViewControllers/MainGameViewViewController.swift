@@ -210,12 +210,18 @@ class MainGameViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     @objc func startFighting() {
-        let fightView = FightViewController()
-        fightView.updateFunc = updateCharacteristics
-        fightView.playersArr = playersArr
-        fightView.currentPlayer = currentPlayer
-        currentPlayer.modificationPoins = 0
-        present(fightView, animated: true)
+        if currentPlayer.name != "NONE" {
+            let fightView = FightViewController()
+            fightView.updateFunc = updateCharacteristics
+            fightView.playersArr = playersArr
+            fightView.currentPlayer = currentPlayer
+            currentPlayer.modificationPoins = 0
+            present(fightView, animated: true)
+        } else {
+            let failAlert = UIAlertController(title: "Не выбран игрок!", message: "Сначала выберите игрока", preferredStyle: .alert)
+            failAlert.addAction(UIAlertAction(title: "Хорошо", style: .default))
+            present(failAlert, animated: true)
+        }
     }
     
     @objc func addPlayer() {
