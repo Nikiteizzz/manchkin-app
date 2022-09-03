@@ -209,6 +209,21 @@ class MainGameViewController: UIViewController, UITableViewDelegate, UITableView
         return cell
     }
     
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            if currentPlayer === playersArr[indexPath.row] {
+                currentPlayer = Player(name: "NONE")
+                playerNameLabel.text = "Выберите игрока!"
+                levelStatistic.atributeValueLabel.text = "0"
+                itemsBoostStatistics.atributeValueLabel.text = "0"
+                currentStrengthLabel.text = "0"
+            }
+            playersArr.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .automatic)
+            print("delete")
+        }
+    }
+    
     @objc func startFighting() {
         if currentPlayer.name != "NONE" {
             let fightView = FightViewController()

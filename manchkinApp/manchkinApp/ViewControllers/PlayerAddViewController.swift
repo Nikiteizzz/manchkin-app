@@ -84,11 +84,12 @@ class PlayerAddViewController: UIViewController {
     
     @objc func addButtonTapped() {
         if nameOfPlayerTextField.text != nil {
-            let successAlert = UIAlertController(title: "Успешно!", message: "Игрок был добавлен", preferredStyle: .alert)
             newPlayer!.name = nameOfPlayerTextField.text!
-            successAlert.addAction(UIAlertAction(title: "В бой!", style: .default))
-            present(successAlert, animated: true)
             addFunc!()
+            let successAlert = UIAlertController(title: "Успешно!", message: "Игрок был добавлен", preferredStyle: .alert)
+            let successAlertAction = UIAlertAction(title: "В бой!", style: .default) { _ in self.dismiss(animated: true) }
+            successAlert.addAction(successAlertAction)
+            present(successAlert, animated: true)
         } else {
             let failAllert = UIAlertController(title: "Ошибка!", message: "Сначала введите имя", preferredStyle: .alert)
             failAllert.addAction(UIAlertAction(title: "Окей", style: .default))
