@@ -12,7 +12,7 @@ class MainGameViewController: UIViewController, UITableViewDelegate, UITableView
     weak var coordinator: AppCoordinator?
     
     var currentPlayer:Player = Player(name: "NONE")
-    var playersArr:[Player] = [Player(name: "Никита", level: 1, itemsBoost: 1), Player(name: "Паша", level: 2, itemsBoost: 3), Player(name: "Лера"), Player(name: "Валера"), Player(name: "Лёша")]
+    var playersArr:[Player] = []
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
@@ -105,8 +105,12 @@ class MainGameViewController: UIViewController, UITableViewDelegate, UITableView
     }()
     
     private let addNewPlayerButton: UIButton = {
-        
-    }
+        let addPlayerButton = UIButton()
+        addPlayerButton.setBackgroundImage(UIImage(named: "addPlayerIcon"), for: .normal)
+        addPlayerButton.addTarget(nil, action: #selector(addPlayer), for: .touchUpInside)
+        addPlayerButton.translatesAutoresizingMaskIntoConstraints = false
+        return addPlayerButton
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -149,6 +153,12 @@ class MainGameViewController: UIViewController, UITableViewDelegate, UITableView
         startFightingButton.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -15).isActive = true
         startFightingButton.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 0.15).isActive = true
         startFightingButton.heightAnchor.constraint(equalTo: startFightingButton.widthAnchor).isActive = true
+        self.view.addSubview(addNewPlayerButton)
+        addNewPlayerButton.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -20).isActive = true
+        addNewPlayerButton.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -15).isActive = true
+        addNewPlayerButton.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 0.15).isActive = true
+        addNewPlayerButton.heightAnchor.constraint(equalTo: addNewPlayerButton.widthAnchor).isActive = true
+        playersArr.append(Player(name: "Гы"))
     }
     
     func updateCharacteristics() {
@@ -207,5 +217,14 @@ class MainGameViewController: UIViewController, UITableViewDelegate, UITableView
         currentPlayer.modificationPoins = 0
         present(fightView, animated: true)
     }
-
+    
+    @objc func addPlayer() {
+        let addPlayerView = PlayerAddViewController()
+        let player = Player(name: "")
+        addPlayerView.newPlayer = player
+        addPlayerView.addFunc = { self.playersArr.append(player)
+                                    self.playersTable.reloadData()
+        }
+        present(addPlayerView, animated: true)
+    }
 }

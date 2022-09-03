@@ -10,6 +10,7 @@ import UIKit
 class PlayerAddViewController: UIViewController {
     
     var newPlayer: Player?
+    var addFunc: (() -> Void)?
     
     public var addPlayerLabel: UILabel = {
         let addPlayerLabel = UILabel()
@@ -24,7 +25,13 @@ class PlayerAddViewController: UIViewController {
     
     public var nameOfPlayerTextField: UITextField = {
         let nameOfPlayerTextField = UITextField()
-        nameOfPlayerTextField.placeholder = "Введите имя"
+        nameOfPlayerTextField.attributedPlaceholder = NSAttributedString(string: "Введите имя", attributes: [NSAttributedString.Key.foregroundColor : UIColor.lightGray])
+        nameOfPlayerTextField.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 15, height: nameOfPlayerTextField.frame.height))
+        nameOfPlayerTextField.leftViewMode = .always
+        nameOfPlayerTextField.layer.borderWidth = 1
+        nameOfPlayerTextField.textColor = .black
+        nameOfPlayerTextField.layer.cornerRadius = 10
+        nameOfPlayerTextField.layer.borderColor = CGColor(red: 179 / 255, green: 179 / 255, blue: 179 / 255, alpha: 1)
         nameOfPlayerTextField.clearButtonMode = .whileEditing
         nameOfPlayerTextField.translatesAutoresizingMaskIntoConstraints = false
         return nameOfPlayerTextField
@@ -32,11 +39,13 @@ class PlayerAddViewController: UIViewController {
     
     public lazy var addButton: UIButton = {
         let addButton = UIButton()
+        addButton.setTitle("Добавить!", for: .normal)
         addButton.layer.borderWidth = 0
         addButton.layer.cornerRadius = 10
-        addButton.backgroundColor = .blue
+        addButton.backgroundColor = UIColor(cgColor: CGColor(red: 243 / 255, green: 95 / 255, blue: 75 / 255, alpha: 1.0))
         addButton.setTitleColor(UIColor.white, for: .normal)
-        nameOfPlayerTextField.translatesAutoresizingMaskIntoConstraints = false
+        addButton.translatesAutoresizingMaskIntoConstraints = false
+        addButton.addTarget(nil, action: #selector(addButtonTapped), for: .touchUpInside)
         return addButton
     }()
     
@@ -44,18 +53,46 @@ class PlayerAddViewController: UIViewController {
         let playerIcon = UIImageView()
         let icon = newPlayer?.playerPicture
         playerIcon.image = icon
-        nameOfPlayerTextField.translatesAutoresizingMaskIntoConstraints = false
+        playerIcon.translatesAutoresizingMaskIntoConstraints = false
         return playerIcon
     }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        newPlayer = Player(name: "")
         self.view.backgroundColor = .white
         self.view.addSubview(addPlayerLabel)
         addPlayerLabel.topAnchor.constraint(equalTo: self.view.topAnchor).isActive = true
         addPlayerLabel.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
         addPlayerLabel.heightAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: 0.15).isActive = true
         addPlayerLabel.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 0.8).isActive = true
+        self.view.addSubview(playerIcon)
+        playerIcon.topAnchor.constraint(equalTo: addPlayerLabel.bottomAnchor).isActive = true
+        playerIcon.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 20).isActive = true
+        playerIcon.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 0.3).isActive = true
+        playerIcon.heightAnchor.constraint(equalTo: playerIcon.widthAnchor).isActive = true
+        self.view.addSubview(nameOfPlayerTextField)
+        nameOfPlayerTextField.leftAnchor.constraint(equalTo: playerIcon.rightAnchor, constant: 15).isActive = true
+        nameOfPlayerTextField.centerYAnchor.constraint(equalTo: playerIcon.centerYAnchor).isActive = true
+        nameOfPlayerTextField.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 0.55).isActive = true
+        nameOfPlayerTextField.heightAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: 0.06).isActive = true
+        self.view.addSubview(addButton)
+        addButton.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
+        addButton.centerYAnchor.constraint(equalTo: self.view.centerYAnchor).isActive = true
+        addButton.heightAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: 0.1).isActive = true
+        addButton.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 0.4).isActive = true
+    }
+    
+    @objc func addButtonTapped() {
+        if nameOfPlayerTextField.text != nil {
+            let successAlert = UIAlertController(title: "Успешно!", message: "Игрок был добавлен", preferredStyle: .alert)
+            newPlayer!.name = nameOfPlayerTextField.text!
+            successAlert.addAction(UIAlertAction(title: "В бой!", style: .default))
+            present(successAlert, animated: true)
+            addFunc!()
+        } else {
+            let failAllert = UIAlertController(title: "Ошибка!", message: "Сначала введите имя", preferredStyle: .alert)
+            failAllert.addAction(UIAlertAction(title: "Окей", style: .default))
+            present(failAllert, animated: true)
+        }
     }
 }
